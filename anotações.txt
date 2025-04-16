@@ -1,0 +1,16 @@
+Anotações - Node integrado com SQL.
+
+- MySQL
+    - Não diferencia minusculas de maiusculas.
+    - Melhor para consultas rápidas e básicas.
+
+- PostegreSQL
+    - Diferencia minusculas de maiusculas.
+    - Melhor para consultas complexas e volumosas.
+
+- Prisma
+    - npx prisma db push = Pegar meu schema e sincronizar com o banco de dados.
+    - npx prisma db pull = Pega o banco de dados e com base no mesmo cria um schema.
+    - npx prisma migrate dev --name init = Usado para migrate inicial.
+    - npx prisma migrate dev = Habiente de desenvolvimento.
+    - npx prisma migrate deploy = Habiente de produção.
