@@ -21,6 +21,8 @@ model User {
   name      String
   email     String   @unique
   Posts     Post[]
+
+  @@map("Users")
 }
 
 model Post {
@@ -30,4 +32,6 @@ model Post {
   body     String
   userId   Int
   author   User   @relation(fields: [userId], references: [id])
+
+  @@map("Posts")
 }
