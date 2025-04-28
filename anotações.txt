@@ -1,5 +1,11 @@
 Anotações - Node integrado com SQL.
 
+- CRUD
+    - C = Create
+    - R = Read
+    - u = Update
+    - D = Delete
+
 - MySQL
     - Não diferencia minusculas de maiusculas.
     - Melhor para consultas rápidas e básicas.
@@ -14,3 +20,12 @@ Anotações - Node integrado com SQL.
     - npx prisma migrate dev --name init = Usado para migrate inicial.
     - npx prisma migrate dev = Habiente de desenvolvimento.
     - npx prisma migrate deploy = Habiente de produção.
+
+- Tipos de filtro
+    - GT = Greater then = Maior que - >
+    - GTE = Greater then or equal =  Maior ou igual - >=
+    - LT = Lower then = Menor que - <
+    - LTE = lower then or equal = Menor ou igual - <=
+    - OR = Para usar mais de uma condição de filtro
+    - startsWith = Começa com alguma letra especifica
+    - endsWith = Termina com alguma letra especifica

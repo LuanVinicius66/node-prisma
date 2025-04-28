@@ -1,6 +1,11 @@
 import { Router } from "express";
 import { prisma } from "../libs/prisma";
-import { createUser, createUsers } from "../services/user";
+import {
+  createUser,
+  createUsers,
+  getAllUsers,
+  getUserByEmail,
+} from "../services/user";
 import { count } from "console";
 
 export const mainRouter = Router();
@@ -13,12 +18,13 @@ mainRouter.post("/user", async (req, res) => {
   // Validar dados recebidos
 
   const user = await createUser({
-    name: "Beto",
-    email: "beto778@gmail.com",
+    name: "Vladimir",
+    email: "vladimir@hotmail.com",
     Posts: {
       create: {
-        title: "Titulo de teste - Beto",
-        body: "Corpo de testes - Beto",
+        title: "Titulo de teste - Vladimir",
+        subtitle: "Subtitulo de teste - Vladimir",
+        body: "Corpo de testes - Vladimir",
       },
     },
   });
@@ -36,5 +42,15 @@ mainRouter.post("/users", async (req, res) => {
     { name: "Fred", email: "fred@gmail.com" },
     { name: "Joe", email: "joe@gmail.com" },
   ]);
+  res.json({ result });
+});
+
+mainRouter.get("/users", async (req, res) => {
+  const result = await getAllUsers();
+  res.json({ result });
+});
+
+mainRouter.get("/user", async (req, res) => {
+  const result = await getUserByEmail(29);
   res.json({ result });
 });
