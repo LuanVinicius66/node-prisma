@@ -5,6 +5,7 @@ import {
   createUsers,
   getAllUsers,
   getUserByEmail,
+  updateUser,
 } from "../services/user";
 import { count } from "console";
 
@@ -18,13 +19,13 @@ mainRouter.post("/user", async (req, res) => {
   // Validar dados recebidos
 
   const user = await createUser({
-    name: "Vladimir",
-    email: "vladimir@hotmail.com",
+    name: "George",
+    email: "george@hotmail.com",
     Posts: {
       create: {
-        title: "Titulo de teste - Vladimir",
-        subtitle: "Subtitulo de teste - Vladimir",
-        body: "Corpo de testes - Vladimir",
+        title: "Baton Rouge",
+        subtitle: "Baton Rouge",
+        body: "Baton Rouge",
       },
     },
   });
@@ -52,5 +53,10 @@ mainRouter.get("/users", async (req, res) => {
 
 mainRouter.get("/user", async (req, res) => {
   const result = await getUserByEmail(29);
+  res.json({ result });
+});
+
+mainRouter.put("/user", async (req, res) => {
+  const result = await updateUser();
   res.json({ result });
 });

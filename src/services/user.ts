@@ -22,18 +22,13 @@ export const createUsers = async (users: Prisma.UserCreateInput[]) => {
 };
 
 export const getAllUsers = async () => {
+  let page = 7;
+
+  let skip = (page - 1) * 2;
+
   const users = await prisma.user.findMany({
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      status: true,
-    },
-    where: {
-      name: {
-        startsWith: "L",
-      },
-    },
+    skip: skip,
+    take: 2,
   });
   return users;
 };
@@ -49,4 +44,19 @@ export const getUserByEmail = async (id: number) => {
     where: { id },
   });
   return user;
+};
+
+export const updateUser = async () => {
+  const updatedUser = await prisma.user.updateMany({
+    where: {
+      name: {
+        startsWith: "L",
+      },
+    },
+    data: {
+      status: true,
+    },
+  });
+
+  return updatedUser;
 };

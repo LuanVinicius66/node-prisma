@@ -14,7 +14,7 @@ Anotações - Node integrado com SQL.
     - Diferencia minusculas de maiusculas.
     - Melhor para consultas complexas e volumosas.
 
-- Prisma
+- Comandos Prisma
     - npx prisma db push = Pegar meu schema e sincronizar com o banco de dados.
     - npx prisma db pull = Pega o banco de dados e com base no mesmo cria um schema.
     - npx prisma migrate dev --name init = Usado para migrate inicial.
@@ -27,5 +27,55 @@ Anotações - Node integrado com SQL.
     - LT = Lower then = Menor que - <
     - LTE = lower then or equal = Menor ou igual - <=
     - OR = Para usar mais de uma condição de filtro
-    - startsWith = Começa com alguma letra especifica
-    - endsWith = Termina com alguma letra especifica
+    - startsWith = Começa com alguma letra especifica (Valido para os primeiros itens)
+    - endsWith = Termina com alguma letra especifica (Valido para os primeiros itens)
+
+- Outras funções do Prisma
+    - _count = Contagem de itens
+    - Skip = Pula a quantidade de registros que indicar
+    - Take = Retorna a quantidade de registros que indicar
+
+Const de exemplo:
+
+export const getAllUsers = async () => {
+  const users = await prisma.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      status: true,
+      Posts: true,
+    },
+    where: {
+      name: {
+        startsWith: "L",
+      },
+    },
+    orderBy: [
+        { name: "asc" }, 
+        { id: "asc" }
+        ],
+  });
+  return users;
+};
+
+Const de exemplo paginação:
+
+export const getAllUsers = async () => {
+  let page = 7;
+
+  let skip = (page - 1) * 2;
+
+  const users = await prisma.user.findMany({
+    skip: skip,
+    take: 2,
+  });
+  return users;
+};
+
+export const getUserByEmail = async (id: number) => {
+  const user = await prisma.user.findUnique({
+
+  });
+  return user;
+};
